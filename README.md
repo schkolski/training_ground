@@ -1,2 +1,2 @@
-# training_ground
+# Training ground
 Training repository for TDD practice
