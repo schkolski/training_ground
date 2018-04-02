@@ -1,7 +1,6 @@
 import unittest
 
-import pytest
-
+from attacking_queens.board import BoardSize
 from attacking_queens.board import ChessBoard
 
 
@@ -15,13 +14,11 @@ class ChessBoardTests(unittest.TestCase):
 
     def test_available_places_for_even_size_board(self):
         even_sized_board = ChessBoard(size=8)
-        self.assertEqual(even_sized_board.black_size, 32)
-        self.assertEqual(even_sized_board.white_size, 32)
+        self.assertEqual(even_sized_board.board_size, BoardSize(black_size=32, white_size=32))
 
     def test_available_places_for_odd_size_board(self):
         odd_sized_board = ChessBoard(size=5)
-        self.assertEqual(odd_sized_board.black_size, 13)
-        self.assertEqual(odd_sized_board.white_size, 12)
+        self.assertEqual(odd_sized_board.board_size, BoardSize(black_size=13, white_size=12))
 
     def test_board_of_size_one_should_have_one_black_and_zero_white_places(self):
         board = ChessBoard(size=1)
