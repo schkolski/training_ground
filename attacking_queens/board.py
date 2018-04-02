@@ -10,8 +10,10 @@ BlackQueen = Queen
 WhiteQueen = Queen
 
 
-def validate_queen(queen: Queen, valid_places: PlaceList) -> Queen:
+def validate_queen(queen: Queen, valid_places: PlaceList, already_placed_queens: list) -> Queen:
     if queen not in valid_places:
+        raise BadQueenPlacementException()
+    if queen in already_placed_queens:
         raise BadQueenPlacementException()
     return queen
 
@@ -55,15 +57,11 @@ class ChessBoard:
         return self.size ** 2 - self.white_size()
 
     def place_black_queen(self, queen: BlackQueen) -> None:
-        valid_queen = validate_queen(queen, self.black_places)
-        if valid_queen in self._queens['black']:
-            raise BadQueenPlacementException()
+        valid_queen = validate_queen(queen, self.black_places, self._queens['black'])
         self._queens['black'].append(valid_queen)
 
     def place_white_queen(self, queen: WhiteQueen) -> None:
-        valid_queen = validate_queen(queen, self.white_places)
-        if valid_queen in self._queens['white']:
-            raise BadQueenPlacementException()
+        valid_queen = validate_queen(queen, self.white_places, self._queens['white'])
         self._queens['white'].append(valid_queen)
 
     def black_queens(self) -> List[BlackQueen]:
