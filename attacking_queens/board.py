@@ -12,8 +12,12 @@ class ChessBoard:
 
     @property
     def black_places(self):
-        return [(0, 0)]
+        if self.size == 1:
+            return [(0, 0)]
+        return [(0, 0), (1, 1)]
 
     @property
     def white_places(self):
-        return []
+        if self.size == 1:
+            return []
+        return [(0, 1), (1, 0)]

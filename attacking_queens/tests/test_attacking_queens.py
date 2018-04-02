@@ -23,12 +23,17 @@ class ChessBoardTests(unittest.TestCase):
         self.assertEqual(odd_sized_board.black_size, 13)
         self.assertEqual(odd_sized_board.white_size, 12)
 
-    def test_board_of_size_one_should_have_one_black_place_and_zero_white(self):
+    def test_board_of_size_one_should_have_one_black_and_zero_white_places(self):
         board = ChessBoard(size=1)
         self.assertEqual(board.black_places, [(0, 0)])
         self.assertEqual(board.white_places, [])
 
-    @pytest.mark.skip(reason='To much work to be done. Stepping back')
+    def test_board_of_size_two_should_have_two_black_and_two_white_places(self):
+        board = ChessBoard(size=2)
+        self.assertEqual(board.black_places, [(0, 0), (1, 1)])
+        self.assertEqual(board.white_places, [(0, 1), (1, 0)])
+
+    @pytest.mark.skip(reason='To much work should be done. Stepping back')
     def test_should_get_all_available_black_places(self):
         expected_black_places = [
             (0, 0), (0, 2), (0, 4),
