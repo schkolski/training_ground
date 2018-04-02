@@ -17,6 +17,6 @@ class ChessBoardTests(unittest.TestCase):
         self.assertEqual(even_sized_board.white_size, 32)
 
     def test_available_places_for_odd_size_board(self):
-        even_sized_board = ChessBoard(size=5)
-        self.assertEqual(even_sized_board.black_size, 13)
-        self.assertEqual(even_sized_board.white_size, 12)
+        odd_sized_board = ChessBoard(size=5)
+        self.assertEqual(odd_sized_board.black_size, 13)
+        self.assertEqual(odd_sized_board.white_size, 12)
