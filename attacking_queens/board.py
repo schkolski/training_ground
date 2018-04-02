@@ -1,10 +1,12 @@
-from typing import NamedTuple
+from typing import NamedTuple, List, Tuple
 
 BoardSize = NamedTuple('BoardSize', [('black_size', int), ('white_size', int)])
 
+PlaceList = List[Tuple[int, int]]
+
 
 class ChessBoard:
-    def __init__(self, size: int):
+    def __init__(self, size: int) -> None:
         self._white_places = []
         self._black_places = []
         self.size = size
@@ -20,22 +22,22 @@ class ChessBoard:
                     self._white_places.append(place_coordinates)
 
     @property
-    def board_size(self):
+    def board_size(self) -> BoardSize:
         return BoardSize(
             black_size=self.black_size(),
             white_size=self.white_size()
         )
 
     @property
-    def black_places(self):
+    def black_places(self) -> PlaceList:
         return self._black_places
 
     @property
-    def white_places(self):
+    def white_places(self) -> PlaceList:
         return self._white_places
 
-    def white_size(self):
+    def white_size(self) -> int:
         return int(self.size ** 2 / 2)
 
-    def black_size(self):
+    def black_size(self) -> int:
         return self.size ** 2 - self.white_size()
