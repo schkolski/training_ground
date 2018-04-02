@@ -3,9 +3,9 @@ class ChessBoard:
         self._white_places = []
         self._black_places = []
         self.size = size
-        self.initialize_places()
+        self.initialize_available_places()
 
-    def initialize_places(self):
+    def initialize_available_places(self):
         for i in range(self.size):
             for j in range(self.size):
                 place_coordinates = (i, j,)
