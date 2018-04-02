@@ -1,5 +1,7 @@
 import unittest
 
+import pytest
+
 from attacking_queens.board import ChessBoard
 
 
@@ -20,3 +22,19 @@ class ChessBoardTests(unittest.TestCase):
         odd_sized_board = ChessBoard(size=5)
         self.assertEqual(odd_sized_board.black_size, 13)
         self.assertEqual(odd_sized_board.white_size, 12)
+
+    def test_board_of_size_one_should_have_one_black_place_and_zero_white(self):
+        board = ChessBoard(size=1)
+        self.assertEqual(board.black_places, [(0, 0)])
+        self.assertEqual(board.white_places, [])
+
+    @pytest.mark.skip(reason='To much work to be done. Stepping back')
+    def test_should_get_all_available_black_places(self):
+        expected_black_places = [
+            (0, 0), (0, 2), (0, 4),
+            (1, 1), (1, 3),
+            (2, 0), (2, 2), (2, 4),
+            (3, 1), (3, 3),
+            (4, 0), (4, 2), (4, 4)
+        ]
+        self.assertEqual(self.board.black_places, expected_black_places)

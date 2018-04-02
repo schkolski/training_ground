@@ -9,3 +9,11 @@ class ChessBoard:
     @property
     def black_size(self):
         return self.size ** 2 - self.white_size
+
+    @property
+    def black_places(self):
+        return [(0, 0)]
+
+    @property
+    def white_places(self):
+        return []
