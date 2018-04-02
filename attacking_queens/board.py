@@ -5,7 +5,7 @@ from attacking_queens.exceptions import BadQueenPlacementException
 
 BoardSize = NamedTuple('BoardSize', [('black_size', int), ('white_size', int)])
 PlaceList = List[Tuple[int, int]]
-Queen = NamedTuple('BlackQueen', [('row', int), ('column', int)])
+Queen = NamedTuple('Queen', [('row', int), ('column', int)])
 BlackQueen = Queen
 WhiteQueen = Queen
 
