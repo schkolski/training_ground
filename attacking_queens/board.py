@@ -62,6 +62,8 @@ class ChessBoard:
 
     def place_white_queen(self, queen: WhiteQueen) -> None:
         valid_queen = validate_queen(queen, self.white_places)
+        if valid_queen in self._queens['white']:
+            raise BadQueenPlacementException()
         self._queens['white'].append(valid_queen)
 
     def black_queens(self) -> List[BlackQueen]:

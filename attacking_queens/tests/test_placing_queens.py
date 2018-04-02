@@ -30,8 +30,14 @@ class PlacingQueensTests(unittest.TestCase):
         with self.assertRaises(BadQueenPlacementException):
             self.board.place_white_queen(black_place)
 
-    def test_place_two_same_color_queen_on_same_place_should_raise_exception(self):
+    def test_place_two_black_queens_on_same_place_should_raise_exception(self):
         black_queen = BlackQueen(row=0, column=0)
+        self.board.place_black_queen(black_queen)
         with self.assertRaises(BadQueenPlacementException):
             self.board.place_black_queen(black_queen)
-            self.board.place_black_queen(black_queen)
+
+    def test_place_two_white_queens_on_same_place_should_raise_exception(self):
+        white_queen = WhiteQueen(row=0, column=1)
+        self.board.place_white_queen(white_queen)
+        with self.assertRaises(BadQueenPlacementException):
+            self.board.place_white_queen(white_queen)
