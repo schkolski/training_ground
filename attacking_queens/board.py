@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import NamedTuple, List, Tuple
 
 from attacking_queens.exceptions import BadQueenPlacementException
@@ -5,11 +6,12 @@ from attacking_queens.exceptions import BadQueenPlacementException
 BoardSize = NamedTuple('BoardSize', [('black_size', int), ('white_size', int)])
 PlaceList = List[Tuple[int, int]]
 BlackQueen = NamedTuple('BlackQueen', [('row', int), ('column', int)])
+WhiteQueen = NamedTuple('WhiteQueen', [('row', int), ('column', int)])
 
 
 class ChessBoard:
     def __init__(self, size: int) -> None:
-        self.queens = list()
+        self._queens = defaultdict(list)
         self._white_places = list()
         self._black_places = list()
         self.size = size
@@ -49,4 +51,16 @@ class ChessBoard:
         if queen not in self.black_places:
             raise BadQueenPlacementException()
 
-        self.queens.append(queen)
+        self._queens['black'].append(queen)
+
+    def place_white_queen(self, queen: WhiteQueen) -> None:
+        if queen not in self.white_places:
+            raise BadQueenPlacementException()
+
+        self._queens['white'].append(queen)
+
+    def black_queens(self) -> List[BlackQueen]:
+        return self._queens['black']
+
+    def white_queens(self) -> List[WhiteQueen]:
+        return self._queens['white']
