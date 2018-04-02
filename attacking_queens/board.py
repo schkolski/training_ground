@@ -5,8 +5,15 @@ from attacking_queens.exceptions import BadQueenPlacementException
 
 BoardSize = NamedTuple('BoardSize', [('black_size', int), ('white_size', int)])
 PlaceList = List[Tuple[int, int]]
-BlackQueen = NamedTuple('BlackQueen', [('row', int), ('column', int)])
-WhiteQueen = NamedTuple('WhiteQueen', [('row', int), ('column', int)])
+Queen = NamedTuple('BlackQueen', [('row', int), ('column', int)])
+BlackQueen = Queen
+WhiteQueen = Queen
+
+
+def validate_queen(queen: Queen, valid_places: PlaceList) -> Queen:
+    if queen not in valid_places:
+        raise BadQueenPlacementException()
+    return queen
 
 
 class ChessBoard:
@@ -48,16 +55,12 @@ class ChessBoard:
         return self.size ** 2 - self.white_size()
 
     def place_black_queen(self, queen: BlackQueen) -> None:
-        if queen not in self.black_places:
-            raise BadQueenPlacementException()
-
-        self._queens['black'].append(queen)
+        valid_queen = validate_queen(queen, self.black_places)
+        self._queens['black'].append(valid_queen)
 
     def place_white_queen(self, queen: WhiteQueen) -> None:
-        if queen not in self.white_places:
-            raise BadQueenPlacementException()
-
-        self._queens['white'].append(queen)
+        valid_queen = validate_queen(queen, self.white_places)
+        self._queens['white'].append(valid_queen)
 
     def black_queens(self) -> List[BlackQueen]:
         return self._queens['black']
