@@ -1,6 +1,18 @@
 class ChessBoard:
     def __init__(self, size: int):
+        self._white_places = []
+        self._black_places = []
         self.size = size
+        self.initialize_places()
+
+    def initialize_places(self):
+        for i in range(self.size):
+            for j in range(self.size):
+                place_coordinates = (i, j,)
+                if (i + j) % 2 == 0:
+                    self._black_places.append(place_coordinates)
+                else:
+                    self._white_places.append(place_coordinates)
 
     @property
     def white_size(self):
@@ -12,22 +24,8 @@ class ChessBoard:
 
     @property
     def black_places(self):
-        if self.size == 1:
-            return [(0, 0)]
-        black_places = []
-        for i in range(self.size):
-            for j in range(self.size):
-                if (i + j) % 2 == 0:
-                    black_places.append((i, j,))
-        return black_places
+        return self._black_places
 
     @property
     def white_places(self):
-        if self.size == 1:
-            return []
-        white_places = []
-        for i in range(self.size):
-            for j in range(self.size):
-                if (i + j) % 2 != 0:
-                    white_places.append((i, j,))
-        return white_places
+        return self._white_places
