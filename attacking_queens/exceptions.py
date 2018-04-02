@@ -1,0 +1,2 @@
+class BadQueenPlacementException(Exception):
+    pass
