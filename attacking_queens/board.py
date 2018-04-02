@@ -3,17 +3,15 @@ from typing import NamedTuple, List, Tuple
 from attacking_queens.exceptions import BadQueenPlacementException
 
 BoardSize = NamedTuple('BoardSize', [('black_size', int), ('white_size', int)])
-
 PlaceList = List[Tuple[int, int]]
-
 BlackQueen = NamedTuple('BlackQueen', [('row', int), ('column', int)])
 
 
 class ChessBoard:
     def __init__(self, size: int) -> None:
-        self.queens = []
-        self._white_places = []
-        self._black_places = []
+        self.queens = list()
+        self._white_places = list()
+        self._black_places = list()
         self.size = size
         self.initialize_available_places()
 

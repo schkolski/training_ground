@@ -7,16 +7,15 @@ from attacking_queens.exceptions import BadQueenPlacementException
 
 class PlacingQueensTests(unittest.TestCase):
 
-    def test_place_black_queen_on_black_place(self):
-        board = ChessBoard(size=5)
-        black_places = board.black_places
-        board.place_black_queen(black_places[0])
+    def setUp(self):
+        self.board = ChessBoard(size=5)
 
-        self.assertEqual(board.queens, [BlackQueen(row=0, column=0)])
+    def test_place_black_queen_on_black_place(self):
+        black_places = self.board.black_places
+        self.board.place_black_queen(black_places[0])
+        self.assertEqual(self.board.queens, [BlackQueen(row=0, column=0)])
 
     def test_place_black_queen_on_white_place_should_raise_exception(self):
-        board = ChessBoard(size=5)
-        white_place = board.white_places
-
+        white_place = self.board.white_places
         with self.assertRaises(BadQueenPlacementException):
-            board.place_black_queen(white_place[0])
+            self.board.place_black_queen(white_place[0])
