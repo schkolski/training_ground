@@ -41,3 +41,6 @@ class PlacingQueensTests(unittest.TestCase):
         self.board.place_white_queen(white_queen)
         with self.assertRaises(BadQueenPlacementException):
             self.board.place_white_queen(white_queen)
+
+    def test_place_two_attacking_queens_opposite_color(self):
+        self.fail("Work for tomorrow")
