@@ -14,10 +14,20 @@ class ChessBoard:
     def black_places(self):
         if self.size == 1:
             return [(0, 0)]
-        return [(0, 0), (1, 1)]
+        black_places = []
+        for i in range(self.size):
+            for j in range(self.size):
+                if (i + j) % 2 == 0:
+                    black_places.append((i, j,))
+        return black_places
 
     @property
     def white_places(self):
         if self.size == 1:
             return []
-        return [(0, 1), (1, 0)]
+        white_places = []
+        for i in range(self.size):
+            for j in range(self.size):
+                if (i + j) % 2 != 0:
+                    white_places.append((i, j,))
+        return white_places
