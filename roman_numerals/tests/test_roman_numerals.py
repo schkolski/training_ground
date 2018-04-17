@@ -4,6 +4,7 @@ import unittest
 class RomanNumeralsConverter:
     def __init__(self):
         self.transformations = {
+            10: 'X',
             9: 'IX',
             5: 'V',
             4: 'IV',
@@ -12,6 +13,10 @@ class RomanNumeralsConverter:
 
     def from_int(self, number: int) -> str:
         roman_number = ''
+
+        if number == 10:
+            roman_number = self.transformations[10]
+            number -= 10
 
         if number == 9:
             roman_number = self.transformations[9]
@@ -64,3 +69,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_nine_should_return_IX(self):
         self.assertRomanNumeralFor(given_number=9, _is='IX')
+
+    def test_for_ten_should_return_X(self):
+        self.assertRomanNumeralFor(given_number=10, _is='X')
