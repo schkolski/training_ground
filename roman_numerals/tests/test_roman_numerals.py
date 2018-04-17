@@ -8,12 +8,15 @@ class RomanNumeralsConverter:
 
 class RomanNumeralsTests(unittest.TestCase):
 
+    def setUp(self):
+        self.converter = RomanNumeralsConverter()
+
+    def assertRomanNumeralFor(self, given_number, _is):
+        result = self.converter.from_int(number=given_number)
+        self.assertEqual(_is, result)
+
     def test_for_negative_numbers_returns_empty_string(self):
-        converter = RomanNumeralsConverter()
-        result = converter.from_int(number=-1)
-        self.assertEqual('', result)
+        self.assertRomanNumeralFor(given_number=-1, _is='')
 
     def test_for_zero_should_return_empty_string(self):
-        converter = RomanNumeralsConverter()
-        result = converter.from_int(number=0)
-        self.assertEqual('', result)
+        self.assertRomanNumeralFor(given_number=0, _is='')
