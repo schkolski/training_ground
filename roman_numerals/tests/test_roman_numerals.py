@@ -10,31 +10,20 @@ class RomanNumeralsConverter:
             4: 'IV',
             1: 'I'
         }
+        self.transformation_keys = list(reversed(sorted(self.transformations.keys())))
 
     def from_int(self, number: int) -> str:
         roman_number = ''
+        transformation_key_index = 0
+        transformation_key = self.transformation_keys[transformation_key_index]
 
         while number > 0:
-            transformation_key = 10
             if number >= transformation_key:
                 roman_number += self.transformations[transformation_key]
                 number -= transformation_key
-
-            elif number >= 9:
-                roman_number += self.transformations[9]
-                number -= 9
-
-            elif number >= 5:
-                roman_number += self.transformations[5]
-                number -= 5
-
-            elif number >= 4:
-                roman_number += self.transformations[4]
-                number -= 4
-
-            elif number >= 1:
-                roman_number += self.transformations[1]
-                number -= 1
+            else:
+                transformation_key_index += 1
+                transformation_key = self.transformation_keys[transformation_key_index]
 
         return roman_number
 
