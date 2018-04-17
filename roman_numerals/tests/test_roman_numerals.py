@@ -12,7 +12,7 @@ class RomanNumeralsConverter:
     def from_int(self, number: int) -> str:
         roman_number = ''
 
-        if number == 5:
+        if number >= 5:
             roman_number = self.transformations[5]
             number -= 5
 
@@ -53,3 +53,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_five_should_return_V(self):
         self.assertRomanNumeralFor(given_number=5, _is='V')
+
+    def test_for_six_should_return_VI(self):
+        self.assertRomanNumeralFor(given_number=6, _is='VI')
