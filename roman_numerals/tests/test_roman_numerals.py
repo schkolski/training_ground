@@ -14,25 +14,27 @@ class RomanNumeralsConverter:
     def from_int(self, number: int) -> str:
         roman_number = ''
 
-        while number >= 10:
-            roman_number += self.transformations[10]
-            number -= 10
+        while number > 0:
+            transformation_key = 10
+            if number >= transformation_key:
+                roman_number += self.transformations[transformation_key]
+                number -= transformation_key
 
-        if number == 9:
-            roman_number += self.transformations[9]
-            number -= 9
+            elif number >= 9:
+                roman_number += self.transformations[9]
+                number -= 9
 
-        if number >= 5:
-            roman_number += self.transformations[5]
-            number -= 5
+            elif number >= 5:
+                roman_number += self.transformations[5]
+                number -= 5
 
-        if number == 4:
-            roman_number += self.transformations[4]
-            number -= 4
+            elif number >= 4:
+                roman_number += self.transformations[4]
+                number -= 4
 
-        while number >= 1:
-            roman_number += self.transformations[1]
-            number -= 1
+            elif number >= 1:
+                roman_number += self.transformations[1]
+                number -= 1
 
         return roman_number
 
@@ -87,3 +89,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_twenty_should_return_XX(self):
         self.assertRomanNumeralFor(given_number=20, _is='XX')
+
+    # def test_for_fourty_should_return_LX(self):
+    #     self.assertRomanNumeralFor(given_number=40, _is='XL')
