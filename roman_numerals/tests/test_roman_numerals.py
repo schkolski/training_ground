@@ -108,3 +108,11 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_1100_should_return_MC(self):
         self.assertRomanNumeralFor(given_number=1100, _is='MC')
+
+    def test_integration_tests(self):
+        self.assertRomanNumeralFor(given_number=982,  _is='CMLXXXII')
+        self.assertRomanNumeralFor(given_number=1991, _is='MCMXCI')
+        self.assertRomanNumeralFor(given_number=1658, _is='MDCLVIII')
+        self.assertRomanNumeralFor(given_number=1659, _is='MDCLIX')
+        self.assertRomanNumeralFor(given_number=2018, _is='MMXVIII')
+        self.assertRomanNumeralFor(given_number=4999, _is='MMMMCMXCIX')
