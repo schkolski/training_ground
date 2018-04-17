@@ -5,24 +5,34 @@ class RomanNumeralsConverter:
     def __init__(self):
         self.transformations = {
             1000: 'M', 900: 'CM',
-            500 : 'D', 400: 'CD',
-            100 : 'C', 90 : 'XC',
-            50  : 'L', 40 : 'XL',
-            10  : 'X', 9  : 'IX',
-            5   : 'V', 4  : 'IV',
-            1   : 'I'
+            500: 'D', 400: 'CD',
+            100: 'C', 90: 'XC',
+            50: 'L', 40: 'XL',
+            10: 'X', 9: 'IX',
+            5: 'V', 4: 'IV',
+            1: 'I'
         }
         self.transformation_keys = list(reversed(sorted(self.transformations.keys())))
 
     def from_int(self, number: int) -> str:
-        roman_number = ''
 
+        roman_number_transformations = list()
         for transformation_key in self.transformation_keys:
-            while number >= transformation_key:
-                roman_number += self.transformations[transformation_key]
-                number -= transformation_key
+            if number >= transformation_key:
+                roman_number_transformations.append(
+                    self.transform(number, transformation_key))
+                number = self.reduce_number(number, transformation_key)
 
-        return roman_number
+        return ''.join(roman_number_transformations)
+
+    @staticmethod
+    def reduce_number(number, transformation_key):
+        return number % transformation_key
+
+    def transform(self, number, transformation_key):
+        transformation_repetitions = number // transformation_key
+        transformation = self.transformations[transformation_key] * transformation_repetitions
+        return transformation
 
 
 class RomanNumeralsTests(unittest.TestCase):
@@ -110,7 +120,7 @@ class RomanNumeralsTests(unittest.TestCase):
         self.assertRomanNumeralFor(given_number=1100, _is='MC')
 
     def test_integration_tests(self):
-        self.assertRomanNumeralFor(given_number=982,  _is='CMLXXXII')
+        self.assertRomanNumeralFor(given_number=982, _is='CMLXXXII')
         self.assertRomanNumeralFor(given_number=1991, _is='MCMXCI')
         self.assertRomanNumeralFor(given_number=1658, _is='MDCLVIII')
         self.assertRomanNumeralFor(given_number=1659, _is='MDCLIX')
