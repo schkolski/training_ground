@@ -4,6 +4,9 @@ import unittest
 class RomanNumeralsConverter:
     def from_int(self, number: int) -> str:
         roman_number = ''
+        if number == 4:
+            roman_number = 'IV'
+            number -= 4
         while number > 0:
             roman_number += 'I'
             number -= 1
@@ -30,3 +33,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_two_should_return_II(self):
         self.assertRomanNumeralFor(given_number=2, _is='II')
+
+    def test_for_four_should_return_IV(self):
+        self.assertRomanNumeralFor(given_number=4, _is='IV')
