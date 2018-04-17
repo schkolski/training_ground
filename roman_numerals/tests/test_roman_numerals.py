@@ -2,11 +2,12 @@ import unittest
 
 
 class RomanNumeralsConverter:
-    def from_int(self, number):
-        if number > 0:
-            return 'I'
-        else:
-            return ''
+    def from_int(self, number: int) -> str:
+        roman_number = ''
+        while number > 0:
+            roman_number += 'I'
+            number -= 1
+        return roman_number
 
 
 class RomanNumeralsTests(unittest.TestCase):
@@ -26,3 +27,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_one_should_return_I(self):
         self.assertRomanNumeralFor(given_number=1, _is='I')
+
+    def test_for_two_should_return_II(self):
+        self.assertRomanNumeralFor(given_number=2, _is='II')
