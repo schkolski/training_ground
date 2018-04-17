@@ -14,16 +14,11 @@ class RomanNumeralsConverter:
 
     def from_int(self, number: int) -> str:
         roman_number = ''
-        transformation_key_index = 0
-        transformation_key = self.transformation_keys[transformation_key_index]
 
-        while number > 0:
-            if number >= transformation_key:
+        for transformation_key in self.transformation_keys:
+            while number >= transformation_key:
                 roman_number += self.transformations[transformation_key]
                 number -= transformation_key
-            else:
-                transformation_key_index += 1
-                transformation_key = self.transformation_keys[transformation_key_index]
 
         return roman_number
 
