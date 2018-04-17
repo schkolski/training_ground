@@ -3,7 +3,10 @@ import unittest
 
 class RomanNumeralsConverter:
     def from_int(self, number):
-        return ''
+        if number > 0:
+            return 'I'
+        else:
+            return ''
 
 
 class RomanNumeralsTests(unittest.TestCase):
@@ -20,3 +23,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_zero_should_return_empty_string(self):
         self.assertRomanNumeralFor(given_number=0, _is='')
+
+    def test_for_one_should_return_I(self):
+        self.assertRomanNumeralFor(given_number=1, _is='I')
