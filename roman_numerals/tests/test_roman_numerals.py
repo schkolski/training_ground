@@ -2,19 +2,28 @@ import unittest
 
 
 class RomanNumeralsConverter:
+    def __init__(self):
+        self.transformations = {
+            5: 'V',
+            4: 'IV',
+            1: 'I'
+        }
+
     def from_int(self, number: int) -> str:
         roman_number = ''
+
         if number == 5:
-            roman_number = 'V'
+            roman_number = self.transformations[5]
             number -= 5
 
         if number == 4:
-            roman_number = 'IV'
+            roman_number = self.transformations[4]
             number -= 4
 
-        while number > 0:
-            roman_number += 'I'
+        while number >= 1:
+            roman_number += self.transformations[1]
             number -= 1
+
         return roman_number
 
 
