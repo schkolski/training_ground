@@ -14,7 +14,7 @@ class RomanNumeralsConverter:
     def from_int(self, number: int) -> str:
         roman_number = ''
 
-        if number == 10:
+        if number >= 10:
             roman_number = self.transformations[10]
             number -= 10
 
@@ -72,3 +72,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_ten_should_return_X(self):
         self.assertRomanNumeralFor(given_number=10, _is='X')
+
+    def test_for_eleven_should_return_XI(self):
+        self.assertRomanNumeralFor(given_number=11, _is='XI')
