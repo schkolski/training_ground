@@ -27,7 +27,7 @@ class RomanNumeralsConverter:
             number -= 5
 
         if number == 4:
-            roman_number = self.transformations[4]
+            roman_number += self.transformations[4]
             number -= 4
 
         while number >= 1:
@@ -75,3 +75,6 @@ class RomanNumeralsTests(unittest.TestCase):
 
     def test_for_eleven_should_return_XI(self):
         self.assertRomanNumeralFor(given_number=11, _is='XI')
+
+    def test_for_fourteen_should_return_XIV(self):
+        self.assertRomanNumeralFor(given_number=14, _is='XIV')
