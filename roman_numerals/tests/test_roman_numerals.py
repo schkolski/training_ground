@@ -21,18 +21,13 @@ class RomanNumeralsConverter:
             if number >= transformation_key:
                 roman_number_transformations.append(
                     self.transform(number, transformation_key))
-                number = self.reduce_number(number, transformation_key)
+                number %= transformation_key
 
         return ''.join(roman_number_transformations)
 
-    @staticmethod
-    def reduce_number(number, transformation_key):
-        return number % transformation_key
-
     def transform(self, number, transformation_key):
-        transformation_repetitions = number // transformation_key
-        transformation = self.transformations[transformation_key] * transformation_repetitions
-        return transformation
+        reps = number // transformation_key
+        return self.transformations[transformation_key] * reps
 
 
 class RomanNumeralsTests(unittest.TestCase):
